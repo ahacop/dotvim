@@ -1,5 +1,6 @@
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
+call pathogen#infect()
 
 let mapleader=','
 "if exists(":Tabularize")
@@ -70,6 +71,8 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 
 autocmd BufWritePre *.py,*.js :call <SID>StripTrailingWhitespaces()
+
+# 
 
 if has("autocmd")
 	filetype plugin indent on
