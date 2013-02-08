@@ -72,8 +72,6 @@ endfunction
 
 autocmd BufWritePre *.py,*.js :call <SID>StripTrailingWhitespaces()
 
-# 
-
 if has("autocmd")
 	filetype plugin indent on
 endif
