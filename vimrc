@@ -29,7 +29,6 @@ set incsearch
 set ignorecase
 set smartcase
 set smarttab
-set autoindent
 set showmatch
 set complete-=i
 
