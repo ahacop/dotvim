@@ -20,11 +20,17 @@ set title
 set number
 set textwidth=72
 
+set ttimeout
+set ttimeoutlen=50
+
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+set smarttab
 set autoindent
+set showmatch
+set complete-=i
 
 set ts=2 sts=2 sw=2 expandtab
 syntax on
@@ -40,6 +46,15 @@ set showmode
 set laststatus=2
 set visualbell
 set ruler
+set wildmenu
+set scrolloff=1
+set sidescrolloff=5
+set display+=lastline
+
+set autoread
+set autowrite
+set fileformats=unix,dos,mac
+set viminfo^=!
 
 function! <SID>StripTrailingWhitespaces()
   " Preparation: save last search, and cursor position.
