@@ -73,3 +73,9 @@
 [submodule "bundle/vim-ctrlp"]
 	path = bundle/vim-ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
+[submodule "bundle/vim-git"]
+	path = bundle/vim-git
+	url = https://github.com/tpope/vim-git.git
+[submodule "bundle/vim-color-github"]
+	path = bundle/vim-color-github
+	url = https://github.com/telamon/vim-color-github.git
