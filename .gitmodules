@@ -70,3 +70,12 @@
 [submodule "bundle/supertab"]
 	path = bundle/supertab
 	url = https://github.com/ervandew/supertab.git
+[submodule "bundle/vim-git"]
+	path = bundle/vim-git
+	url = https://github.com/tpope/vim-git.git
+[submodule "bundle/vim-color-github"]
+	path = bundle/vim-color-github
+	url = https://github.com/telamon/vim-color-github.git
+[submodule "bundle/commandt"]
+	path = bundle/commandt
+	url = https://github.com/wincent/Command-T.git
