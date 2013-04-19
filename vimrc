@@ -31,13 +31,15 @@ set smartcase
 set smarttab
 set showmatch
 set complete-=i
+set splitbelow
+set splitright
 
 set ts=2 sts=2 sw=2 expandtab
 syntax on
 if has('gui_running')
   set background=light
 else
-  set background=dark
+  set background=light
 endif
 colorscheme solarized
 
@@ -92,6 +94,10 @@ augroup vimrcEx
   autocmd FileType text setlocal textwidth=78
   " Jump to last cursor position unless it's invalid or in an event handler
   autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+  autocmd! BufReadPost gitcommit
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal g`\"" |
     \ endif
