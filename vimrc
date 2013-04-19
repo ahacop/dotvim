@@ -39,7 +39,7 @@ syntax on
 if has('gui_running')
   set background=light
 else
-  set background=light
+  set background=dark
 endif
 colorscheme solarized
 
@@ -77,7 +77,6 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 
 autocmd BufWritePre *.py,*.js :call <SID>StripTrailingWhitespaces()
-autocmd FileType gitcommit setlocal spell spelllang=en_us
 
 if has("autocmd")
 	filetype plugin indent on
@@ -101,6 +100,8 @@ augroup vimrcEx
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal g`\"" |
     \ endif
+  autocmd FileType gitcommit setlocal spell spelllang=en_us 
+  autocmd FileType gitcommit DiffGitCached | wincmd L
 
   "for ruby, autoindent with two spaces, always expand tabs
   autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
