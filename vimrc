@@ -8,6 +8,8 @@ let mapleader=','
   vmap <Leader>a= :Tabularize /=<CR>
   nmap <Leader>a: :Tabularize /:\zs<CR>
   vmap <Leader>a: :Tabularize /:\zs<CR>
+  nmap <Leader>ar :Tabularize /=><CR>
+  vmap <Leader>ar :Tabularize /=><CR>
 "endif
 
 " Bubble single lines
