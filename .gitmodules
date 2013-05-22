@@ -28,12 +28,6 @@
 [submodule "bundle/vim-handlebars"]
 	path = bundle/vim-handlebars
 	url = https://github.com/nono/vim-handlebars.git
-[submodule "bundle/vim-csv"]
-	path = bundle/vim-csv
-	url = https://github.com/chrisbra/csv.vim.git
-[submodule "bundle/vim-clojure"]
-	path = bundle/vim-clojure
-	url = https://github.com/vim-scripts/VimClojure.git
 [submodule "bundle/vim-less"]
 	path = bundle/vim-less
 	url = https://github.com/groenewege/vim-less.git
@@ -70,9 +64,6 @@
 [submodule "bundle/supertab"]
 	path = bundle/supertab
 	url = https://github.com/ervandew/supertab.git
-[submodule "bundle/vim-git"]
-	path = bundle/vim-git
-	url = https://github.com/tpope/vim-git.git
 [submodule "bundle/vim-color-github"]
 	path = bundle/vim-color-github
 	url = https://github.com/telamon/vim-color-github.git
@@ -85,6 +76,3 @@
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "bundle/vim-ragtag"]
-	path = bundle/vim-ragtag
-	url = https://github.com/tpope/vim-ragtag.git
