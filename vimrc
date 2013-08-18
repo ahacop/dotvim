@@ -102,14 +102,14 @@ augroup vimrcEx
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal g`\"" |
     \ endif
-  autocmd FileType gitcommit setlocal spell spelllang=en_us 
+  autocmd FileType gitcommit setlocal spell spelllang=en_us
   autocmd FileType gitcommit DiffGitCached | wincmd L
 
   "for ruby, autoindent with two spaces, always expand tabs
   autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
   autocmd FileType python set sw=4 sts=4 et
 
-  autocmd! BufRead,BufNewFile *.sass setfiletype sass 
+  autocmd! BufRead,BufNewFile *.sass setfiletype sass
 
   autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
   autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
@@ -276,8 +276,9 @@ nnoremap <leader>. :call OpenTestAlternate()<cr>
 map <leader>t :call RunTestFile()<cr>
 map <leader>T :call RunNearestTest()<cr>
 map <leader>a :call RunTests('')<cr>
-map <leader>c :w\|:!features<cr>
-map <leader>w :w\|:!features --profile wip<cr>
+map <leader>c :w\|:!cucumber<cr>
+map <leader>w :w\|:!cucumber --profile wip --tags @wip:99<cr>
+map <leader>W :w\|:!cucumber --profile wip %<cr>
 
 function! RunTestFile(...)
     if a:0
@@ -326,4 +327,17 @@ function! RunTests(filename)
             exec ":!rspec --color " . a:filename
         end
     end
+endfunction
+
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
 endfunction
