@@ -43,9 +43,6 @@
 [submodule "bundle/vim-ruby"]
 	path = bundle/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby.git
-[submodule "bundle/vim-scala"]
-	path = bundle/vim-scala
-	url = https://github.com/rosstimson/scala-vim-support.git
 [submodule "bundle/vim-scss"]
 	path = bundle/vim-scss
 	url = https://github.com/cakebaker/scss-syntax.vim.git
@@ -70,9 +67,6 @@
 [submodule "bundle/commandt"]
 	path = bundle/commandt
 	url = https://github.com/wincent/Command-T.git
-[submodule "bundle/vim-dispatch"]
-	path = bundle/vim-dispatch
-	url = https://github.com/tpope/vim-dispatch.git
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
