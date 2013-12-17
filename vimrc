@@ -341,3 +341,6 @@ function! s:align()
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
 endfunction
+
+" open quickfix after any grep invocation
+autocmd QuickFixCmdPost *grep* cwindow
