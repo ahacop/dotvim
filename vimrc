@@ -61,6 +61,7 @@ set autoread
 set autowrite
 set fileformats=unix,dos,mac
 set viminfo^=!
+set backspace=indent,eol,start
 
 imap <c-l> <space>=><space>
 :nnoremap <CR> :nohlsearch<cr>
