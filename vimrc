@@ -2,71 +2,47 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 call pathogen#infect()
 
-let mapleader=','
-"if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
-  nmap <Leader>ar :Tabularize /=><CR>
-  vmap <Leader>ar :Tabularize /=><CR>
-"endif
-
-nmap <Leader>ws :%s/\s\+$//e<CR><CR>
-
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
-
-set title
-set number
-set textwidth=72
-
-set ttimeout
-set ttimeoutlen=50
-
+set autoread
+set autowrite
+set backspace=indent,eol,start
+set complete-=i
+set display+=lastline
+set fileformats=unix,dos,mac
 set hlsearch
-set incsearch
 set ignorecase
+set incsearch
+set laststatus=2
+set number
+set ruler
+set scrolloff=1
+set scrolloff=3
+set shell=bash
+set showcmd
+set showmatch
+set showmode
+set sidescrolloff=5
 set smartcase
 set smarttab
-set showmatch
-set complete-=i
 set splitbelow
 set splitright
-
+set textwidth=72
+set title
 set ts=2 sts=2 sw=2 expandtab
+set ttimeout
+set ttimeoutlen=50
+set viminfo^=!
+set visualbell
+set wildmenu
+set wildmode=longest,list
+
 syntax on
+
 if has('gui_running')
   set background=light
 else
   set background=dark
 endif
 colorscheme solarized
-
-set showcmd
-set showmode
-set laststatus=2
-set visualbell
-set ruler
-set wildmenu
-set wildmode=longest,list
-set scrolloff=1
-set sidescrolloff=5
-set display+=lastline
-set shell=bash
-set scrolloff=3
-set autoread
-set autowrite
-set fileformats=unix,dos,mac
-set viminfo^=!
-set backspace=indent,eol,start
-
-imap <c-l> <space>=><space>
-:nnoremap <CR> :nohlsearch<cr>
 
 function! <SID>StripTrailingWhitespaces()
   " Preparation: save last search, and cursor position.
@@ -133,6 +109,28 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader=','
+"if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+  nmap <Leader>ar :Tabularize /=><CR>
+  vmap <Leader>ar :Tabularize /=><CR>
+"endif
+
+nmap <Leader>ws :%s/\s\+$//e<CR><CR>
+
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
+imap <c-l> <space>=><space>
+:nnoremap <CR> :nohlsearch<cr>
+
 map <leader>y "*y
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
