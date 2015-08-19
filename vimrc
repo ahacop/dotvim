@@ -12,6 +12,8 @@ let mapleader=','
   vmap <Leader>ar :Tabularize /=><CR>
 "endif
 
+nmap <Leader>ws :%s/\s\+$//e<CR><CR>
+
 " Bubble single lines
 nmap <C-Up> [e
 nmap <C-Down> ]e
