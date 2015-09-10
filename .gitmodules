@@ -73,3 +73,6 @@
 [submodule "bundle/vim-eunuch"]
 	path = bundle/vim-eunuch
 	url = git://github.com/tpope/vim-eunuch.git
+[submodule "bundle/mustache"]
+	path = bundle/mustache
+	url = git://github.com/mustache/vim-mustache-handlebars.git
