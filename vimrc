@@ -2,6 +2,8 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 call pathogen#infect()
 
+let g:jsx_ext_required = 0
+
 set autoread
 set autowrite
 set backspace=indent,eol,start
