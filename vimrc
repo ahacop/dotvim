@@ -135,14 +135,6 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
-  nmap <Leader>ar :Tabularize /=><CR>
-  vmap <Leader>ar :Tabularize /=><CR>
-"endif
 
 " Bubble single lines
 nmap <C-Up> [e
@@ -160,8 +152,6 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-" Insert a hash rocket with <c-l>
-imap <c-l> <space>=><space>
 " Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
 " Clear the search buffer when hitting return
@@ -232,40 +222,6 @@ endfunction
 :map <leader>p :PromoteToLet<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MAPS TO JUMP TO SPECIFIC COMMAND-T TARGETS AND FILES
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>gr :topleft :split config/routes.rb<cr>
-function! ShowRoutes()
-  " Requires 'scratch' plugin
-  :topleft 100 :split __Routes__
-  " Make sure Vim doesn't write __Routes__ as a file
-  :set buftype=nofile
-  " Delete everything
-  :normal 1GdG
-  " Put routes output in buffer
-  :0r! bundle exec rake -s routes
-  " Size window to number of lines (1 plus rake output length)
-  :exec ":normal " . line("$") . _ "
-  " Move cursor to bottom
-  :normal 1GG
-  " Delete empty trailing line
-  :normal dd
-endfunction
-map <leader>gR :call ShowRoutes()<cr>
-map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
-map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
-map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
-map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
-map <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets<cr>
-map <leader>gf :CommandTFlush<cr>\|:CommandT features<cr>
-map <leader>gg :topleft 100 :split Gemfile<cr>
-map <leader>gt :CommandTFlush<cr>\|:CommandTTag<cr>
-map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
-map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SWITCH BETWEEN TEST AND PRODUCTION CODE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! OpenTestAlternate()
@@ -320,19 +276,6 @@ function! AlternateForCurrentFile()
   end
 endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
-
-inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
-
-function! s:align()
-  let p = '^\s*|\s.*\s|\s*$'
-  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-    Tabularize/|/l1
-    normal! 0
-    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-  endif
-endfunction
 
 " open quickfix after any grep invocation
 autocmd QuickFixCmdPost *grep* cwindow
