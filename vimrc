@@ -1,23 +1,23 @@
 let mapleader=','
 
 call plug#begin('~/.vim/plugged')
-Plug 'altercation/vim-colors-solarized'
-Plug 'thoughtbot/vim-rspec'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
-Plug 'w0rp/ale'
+Plug 'altercation/vim-colors-solarized'
+Plug 'kchmck/vim-coffee-script'
+Plug 'mxw/vim-jsx'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'pangloss/vim-javascript'
-Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdcommenter'
+Plug 'thoughtbot/vim-rspec'
+Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
-Plug 'tpope/vim-bundler'
-Plug 'kchmck/vim-coffee-script'
-Plug 'scrooloose/nerdcommenter'
-Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'w0rp/ale'
 call plug#end()
 
 " Settings for vim-gitgutter
