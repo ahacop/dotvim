@@ -6,6 +6,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 call plug#end()
 
 " Settings for vim-javascript
