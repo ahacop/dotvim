@@ -12,7 +12,6 @@ set incsearch
 set laststatus=2
 set number
 set ruler
-set scrolloff=1
 set scrolloff=3
 set shell=bash
 set showcmd
