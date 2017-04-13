@@ -17,6 +17,7 @@ Plug 'tpope/vim-bundler'
 Plug 'kchmck/vim-coffee-script'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mxw/vim-jsx'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 " Settings for vim-gitgutter
