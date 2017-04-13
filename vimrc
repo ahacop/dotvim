@@ -12,6 +12,7 @@ Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
+Plug 'kchmck/vim-coffee-script'
 call plug#end()
 
 " Settings for vim-better-whitespace
