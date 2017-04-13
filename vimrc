@@ -1,7 +1,6 @@
 let mapleader=','
 
 call plug#begin('~/.vim/plugged')
-Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mxw/vim-jsx'
@@ -19,10 +18,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 call plug#end()
-
-" Settings for vim-gitgutter
-let g:gitgutter_realtime = 0
-set updatetime=250
 
 " Settings for vim-better-whitespace
 autocmd BufEnter * EnableStripWhitespaceOnSave
