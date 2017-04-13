@@ -63,6 +63,7 @@ set ts=2 sts=2 sw=2 expandtab
 set visualbell
 set wildmode=longest,list
 
+" vim-solarized settings
 if has('gui_running')
   set background=light
 else
