@@ -9,6 +9,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-bundler'
 call plug#end()
 
 " Settings for vim-better-whitespace
