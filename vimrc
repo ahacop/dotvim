@@ -5,6 +5,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
 Plug 'pangloss/vim-javascript'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Settings for vim-javascript
