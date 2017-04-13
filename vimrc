@@ -1,3 +1,6 @@
+call plug#begin('~/.vim/plugged')
+call plug#end()
+
 let g:jsx_ext_required = 0
 
 set autoread
