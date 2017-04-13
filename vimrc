@@ -16,6 +16,10 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'scrooloose/nerdcommenter'
 call plug#end()
 
+" Settings for vim-gitgutter
+let g:gitgutter_realtime = 0
+set updatetime=250
+
 " Settings for vim-better-whitespace
 autocmd BufEnter * EnableStripWhitespaceOnSave
 
