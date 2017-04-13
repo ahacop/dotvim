@@ -16,6 +16,7 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
 Plug 'kchmck/vim-coffee-script'
 Plug 'scrooloose/nerdcommenter'
+Plug 'mxw/vim-jsx'
 call plug#end()
 
 " Settings for vim-gitgutter
@@ -25,8 +26,10 @@ set updatetime=250
 " Settings for vim-better-whitespace
 autocmd BufEnter * EnableStripWhitespaceOnSave
 
-" Settings for vim-javascript
+" Settings for vim-jsx
 let g:jsx_ext_required = 0
+
+" Settings for vim-javascript
 let g:javascript_plugin_flow = 1
 map <leader>cl :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
 let g:javascript_conceal_function             = "ƒ"
