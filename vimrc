@@ -249,4 +249,6 @@ endfunction
 nnoremap <leader>. :call OpenTestAlternate()<cr>
 
 " open quickfix after any grep invocation
-autocmd QuickFixCmdPost *grep* cwindow
+augroup grepQuickFixGroup
+  autocmd QuickFixCmdPost *grep* cwindow
+augroup END
