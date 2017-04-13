@@ -2,6 +2,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
 Plug 'pangloss/vim-javascript'
@@ -9,6 +10,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-eunuch'
 call plug#end()
+
+" Settings for vim-better-whitespace
+autocmd BufEnter * EnableStripWhitespaceOnSave
 
 " Settings for vim-javascript
 let g:jsx_ext_required = 0
@@ -65,21 +69,6 @@ else
   set background=dark
 endif
 colorscheme solarized
-
-function! <SID>StripTrailingWhitespaces()
-  " Preparation: save last search, and cursor position.
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  " Do the business:
-  %s/\s\+$//e
-  " Clean up: restore previous search history,
-  " and cursor position
-  let @/=_s
-  call cursor(l, c)
-endfunction
-
-autocmd BufWritePre *.py,*.js :call <SID>StripTrailingWhitespaces()
 
 if has("autocmd")
 	filetype plugin indent on
@@ -140,8 +129,6 @@ let mapleader=','
   nmap <Leader>ar :Tabularize /=><CR>
   vmap <Leader>ar :Tabularize /=><CR>
 "endif
-
-nmap <Leader>ws :%s/\s\+$//e<CR><CR>
 
 " Bubble single lines
 nmap <C-Up> [e
