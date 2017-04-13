@@ -14,6 +14,7 @@ Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -44,39 +45,23 @@ let g:javascript_conceal_arrow_function       = "⇒"
 map <leader>t :call RunCurrentSpecFile()<CR>
 map <leader>T :call RunNearestSpec()<CR>
 
-set autoread
 set autowrite
-set backspace=indent,eol,start
-set complete-=i
-set display+=lastline
 set fileformats=unix,dos,mac
 set hlsearch
 set ignorecase
-set incsearch
-set laststatus=2
 set number
-set ruler
-set scrolloff=3
 set shell=bash
 set showcmd
 set showmatch
 set showmode
-set sidescrolloff=5
 set smartcase
-set smarttab
 set splitbelow
 set splitright
 set textwidth=72
 set title
 set ts=2 sts=2 sw=2 expandtab
-set ttimeout
-set ttimeoutlen=50
-set viminfo^=!
 set visualbell
-set wildmenu
 set wildmode=longest,list
-
-syntax on
 
 if has('gui_running')
   set background=light
@@ -84,10 +69,6 @@ else
   set background=dark
 endif
 colorscheme solarized
-
-if has("autocmd")
-	filetype plugin indent on
-endif
 
 cabbrev h vertical help
 
