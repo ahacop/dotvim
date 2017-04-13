@@ -13,6 +13,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-bundler'
 Plug 'kchmck/vim-coffee-script'
+Plug 'scrooloose/nerdcommenter'
 call plug#end()
 
 " Settings for vim-better-whitespace
