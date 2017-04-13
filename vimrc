@@ -2,6 +2,7 @@ let mapleader=','
 
 call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
+Plug 'jlanzarotta/bufexplorer'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mxw/vim-jsx'
 Plug 'ntpeters/vim-better-whitespace'
