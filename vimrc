@@ -98,6 +98,7 @@ augroup vimrcEx
   " to run commands there.
   autocmd! CmdwinEnter * :unmap <cr>
   autocmd! CmdwinLeave * :call MapCR()
+  autocmd BufEnter * :call MapCR()
   autocmd BufRead,BufNewFile Podfile set filetype=ruby
 augroup END
 
@@ -113,7 +114,6 @@ vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
 imap <c-l> <space>=><space>
-:nnoremap <CR> :nohlsearch<cr>
 
 map <leader>y "*y
 " Move around splits with <c-hjkl>
@@ -125,7 +125,11 @@ nnoremap <c-l> <c-w>l
 imap <c-c> <esc>
 " Clear the search buffer when hitting return
 function! MapCR()
-  nnoremap <cr> :nohlsearch<cr>
+  if &buftype ==# 'quickfix'
+    execute "unmap <cr>"
+  else
+    execute "nnoremap <cr> :nohlsearch<cr>"
+  endif
 endfunction
 call MapCR()
 nnoremap <leader><leader> <c-^>
