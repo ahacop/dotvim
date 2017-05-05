@@ -10,6 +10,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdcommenter'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
