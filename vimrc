@@ -291,3 +291,11 @@ function! SelectaIdentifier()
   call SelectaCommand("find * -type f", "-s " . @z, ":e")
 endfunction
 nnoremap <c-g> :call SelectaIdentifier()<cr>
+
+function! LaunchAndCompileVice()
+  let current_file = expand('%')
+  let base_name = expand('%:r')
+  let $CLASSPATH='$CLASSPATH:/Applications/KickAssembler/KickAss.jar'
+  exec ":!mkdir -p bin & java cml.kickass.KickAssembler '" . current_file . "' -log 'bin/" . base_name . "_BuildLog.txt' -o 'bin/" . base_name . "_Compiled.prg' -vicesymbols -showmem -symbolfiledir bin && x64 -moncommands 'bin/" . base_name . ".vs' 'bin/" . base_name . "_Compiled.prg'"
+endfunction
+nnoremap <leader>k :call LaunchAndCompileVice()<cr>
