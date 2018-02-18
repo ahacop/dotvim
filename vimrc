@@ -1,6 +1,7 @@
 let mapleader=','
 
 call plug#begin('~/.vim/plugged')
+Plug 'wannesm/wmgraphviz.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'kchmck/vim-coffee-script'
