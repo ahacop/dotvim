@@ -21,7 +21,11 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
+Plug 'gryf/kickass-syntax-vim'
 call plug#end()
+
+" Set asm as kickass syntax
+autocmd BufRead *.asm set filetype=kickass
 
 " Settings for vim-better-whitespace
 autocmd BufEnter * EnableStripWhitespaceOnSave
