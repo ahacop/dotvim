@@ -39,6 +39,8 @@ let g:javascript_plugin_flow = 1
 " RSpec.vim mappings
 map <leader>t :call RunCurrentSpecFile()<CR>
 map <leader>T :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
 set autowrite
 set fileformats=unix,dos,mac
