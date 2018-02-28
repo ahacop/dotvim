@@ -1,7 +1,9 @@
 let mapleader=','
 
 call plug#begin('~/.vim/plugged')
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'altercation/vim-colors-solarized'
+Plug 'eagletmt/ghcmod-vim'
 Plug 'gryf/kickass-syntax-vim'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'kchmck/vim-coffee-script'
