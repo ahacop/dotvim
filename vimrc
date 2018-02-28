@@ -1,8 +1,8 @@
 let mapleader=','
 
 call plug#begin('~/.vim/plugged')
-Plug 'wannesm/wmgraphviz.vim'
 Plug 'altercation/vim-colors-solarized'
+Plug 'gryf/kickass-syntax-vim'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mxw/vim-jsx'
@@ -21,7 +21,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
-Plug 'gryf/kickass-syntax-vim'
+Plug 'wannesm/wmgraphviz.vim'
 call plug#end()
 
 " Set asm as kickass syntax
