@@ -302,3 +302,10 @@ endfunction
 nnoremap <c-g> :call SelectaIdentifier()<cr>
 
 nnoremap <leader>k :!make<cr>
+
+let g:airline#extensions#ale#enabled = 1
+
+nnoremap <Leader>ht :GhcModType<cr>
+nnoremap <Leader>htc :GhcModTypeClear<cr>
+autocmd FileType haskell nnoremap <buffer> <leader>? :call ale#cursor#ShowCursorDetail()<cr>
+
