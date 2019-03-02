@@ -12,7 +12,6 @@ Plug 'mxw/vim-jsx'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
-Plug 'reasonml-editor/vim-reason-plus'
 Plug 'scrooloose/nerdcommenter'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-bundler'
@@ -27,7 +26,20 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 Plug 'wannesm/wmgraphviz.vim'
+
+" reason setup
+Plug 'reasonml-editor/vim-reason-plus'
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+let g:python3_host_prog = "/usr/local/bin/python3"
+Plug 'junegunn/fzf.vim'
 call plug#end()
+
+" more reason setup
+let g:LanguageClient_serverCommands = { 'reason': ['/opt/reason-language-server.exe'] }
+let g:deoplete#enable_at_startup = 1 " enable autocomplete
 
 " Set asm as kickass syntax
 autocmd BufRead *.asm set filetype=kickass
