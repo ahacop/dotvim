@@ -27,6 +27,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 Plug 'wannesm/wmgraphviz.vim'
 
+autocmd FileType vue syntax sync fromstart
+
 " reason setup
 Plug 'reasonml-editor/vim-reason-plus'
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
