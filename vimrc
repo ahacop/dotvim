@@ -13,7 +13,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
 Plug 'reasonml-editor/vim-reason-plus'
 Plug 'scrooloose/nerdcommenter'
-Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
