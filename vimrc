@@ -12,6 +12,7 @@ Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
 Plug 'reasonml-editor/vim-reason-plus'
+Plug 'janko-m/vim-test'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-cucumber'
@@ -38,10 +39,15 @@ let g:jsx_ext_required = 0
 let g:javascript_plugin_flow = 1
 
 " RSpec.vim mappings
-map <leader>t :call RunCurrentSpecFile()<CR>
-map <leader>T :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+map <leader>t :TestFile<CR>
+map <leader>T :TestNearest<CR>
+map <Leader>l :TestLast<CR>
+map <Leader>a :TestSuite<CR>
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
 
 set autowrite
 set fileformats=unix,dos,mac
