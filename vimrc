@@ -9,7 +9,6 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'kchmck/vim-coffee-script'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'mxw/vim-jsx'
-Plug 'ntpeters/vim-better-whitespace'
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
 Plug 'reasonml-editor/vim-reason-plus'
@@ -32,9 +31,6 @@ call plug#end()
 autocmd FileType vue syntax sync fromstart
 " Set asm as kickass syntax
 autocmd BufRead *.asm set filetype=kickass
-
-" Settings for vim-better-whitespace
-autocmd BufEnter * EnableStripWhitespaceOnSave
 
 " Settings for vim-jsx
 let g:jsx_ext_required = 0
