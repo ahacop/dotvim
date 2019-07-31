@@ -1,6 +1,11 @@
 let mapleader=','
 
 call plug#begin('~/.vim/plugged')
+Plug 'rhysd/git-messenger.vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/denite.nvim'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'altercation/vim-colors-solarized'
 Plug 'eagletmt/ghcmod-vim'
@@ -27,6 +32,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 Plug 'wannesm/wmgraphviz.vim'
 call plug#end()
+
+let g:deoplete#enable_at_startup = 1
 
 autocmd FileType vue syntax sync fromstart
 " Set asm as kickass syntax
@@ -315,6 +322,7 @@ nnoremap <Leader>htc :GhcModTypeClear<cr>
 autocmd FileType haskell nnoremap <buffer> <leader>? :call ale#cursor#ShowCursorDetail()<cr>
 
 let g:ale_fixers = {}
+let g:ale_fixers['typescript'] = ['prettier']
 let g:ale_fixers['javascript'] = ['prettier']
 let g:ale_fixers['vue'] = ['prettier']
 let g:ale_fix_on_save = 1
