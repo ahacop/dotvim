@@ -26,8 +26,8 @@ runners are supported:
 | **Crystal**    | Crystal                                                                                     | `crystalspec`                                                                                                   |
 | **Elixir**     | ESpec, ExUnit                                                                               | `espec`, `exunit`                                                                                               |
 | **Elm**        | elm-test                                                                                    | `elmtest`                                                                                                       |
-| **Erlang**     | CommonTest                                                                                  | `commontest`                                                                                                    |
-| **Go**         | Ginkgo, Go, Rich-Go                                                                         | `ginkgo`, `gotest`, `richgo`                                                                                    |
+| **Erlang**     | CommonTest, EUnit                                                                           | `commontest`, `eunit`                                                                                           |
+| **Go**         | Ginkgo, Go, Rich-Go, Delve                                                                  | `ginkgo`, `gotest`, `richgo`, `delve`                                                                           |
 | **Java**       | Maven, Gradle                                                                               | `maventest`, `gradletest`                                                                                       |
 | **JavaScript** | Ava, Cucumber.js, Intern, Jasmine, Jest, ReactScripts, Karma, Lab, Mocha, TAP, WebdriverIO  | `ava`, `cucumberjs`, `intern`, `jasmine`, `jest`, `reactscripts`, `karma`, `lab`, `mocha`, `tap`, `webdriverio` |
 | **Lua**        | Busted                                                                                      | `busted`                                                                                                        |
@@ -37,7 +37,7 @@ runners are supported:
 | **Racket**     | RackUnit                                                                                    | `rackunit`                                                                                                      |
 | **Ruby**       | Cucumber, [M], [Minitest][minitest], Rails, RSpec                                           | `cucumber`, `m`, `minitest`, `rails`, `rspec`                                                                   |
 | **Rust**       | Cargo                                                                                       | `cargotest`                                                                                                     |
-| **Scala**      | SBT                                                                                         | `sbttest`                                                                                                       |
+| **Scala**      | SBT, Bloop                                                                                  | `sbttest`, `blooptest`                                                                                          |
 | **Shell**      | Bats                                                                                        | `bats`                                                                                                          |
 | **Swift**      | Swift Package Manager                                                                       | `swiftpm`                                                                                                       |
 | **VimScript**  | Vader.vim, VSpec, Themis                                                                    | `vader`, `vspec`, `themis`                                                                                      |
@@ -354,7 +354,8 @@ let test#python#runner = 'pytest'
 
 The pytest runner optionally supports [pipenv](https://github.com/pypa/pipenv).
 If you have a `Pipfile`, it will use `pipenv run pytest` instead of just
-`pytest`.
+`pytest`. It also supports [poetry](https://github.com/sdispater/poetry)
+and will use `poetry run pytest` if it detects a `poetry.lock`.
 
 #### Java
 
@@ -365,6 +366,29 @@ force a specific runner:
 let test#java#runner = 'gradletest'
 ```
 
+#### Scala
+
+For the same reason as Python, runner detection works the same for Scala. To
+force a specific runner:
+
+``` vim
+let test#scala#runner = 'blooptest'
+```
+
+You may have subprojects inside your main sbt projects. Bloop project detection 
+uses your main project to run tests. If you need to run test inside your subproject,
+you can specify custom projects with:
+
+```vim
+let g:test#scala#blooptest#project_name = 'custom-project'
+```
+
+With this configuration, the test runner will run test for `custom-project`:
+
+```sh
+$ bloop test custom-project
+```
+
 #### Go
 
 For the same reason as Python, runner detection works the same for Go. To
@@ -372,8 +396,25 @@ force a specific runner:
 
 ``` vim
 let test#go#runner = 'ginkgo'
-" Runners available are 'gotest', 'ginkgo', 'richgo'
+" Runners available are 'gotest', 'ginkgo', 'richgo', 'delve'
 ```
+
+You can also configure the `delve` runner with a different key mapping
+alongside another:
+
+```vim
+nmap <silent> t<C-n> :TestNearest<CR>
+function! DebugNearest()
+  let g:test#go#runner = 'delve'
+  TestNearest
+  unlet g:test#go#runner
+endfunction
+nmap <silent> t<C-d> :call DebugNearest()<CR>
+```
+
+If `delve` is selected and [vim-delve](https://github.com/sebdah/vim-delve) is
+in use, breakpoints and tracepoints that have been marked with vim-delve will
+be included.
 
 #### Ruby
 

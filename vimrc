@@ -1,60 +1,30 @@
 let mapleader=','
 
 call plug#begin('~/.vim/plugged')
-Plug 'rhysd/git-messenger.vim'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/denite.nvim'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+" appearance
 Plug 'altercation/vim-colors-solarized'
-Plug 'eagletmt/ghcmod-vim'
-Plug 'gryf/kickass-syntax-vim'
-Plug 'jlanzarotta/bufexplorer'
-Plug 'kchmck/vim-coffee-script'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
-Plug 'posva/vim-vue'
-Plug 'reasonml-editor/vim-reason-plus'
-Plug 'janko-m/vim-test'
-Plug 'scrooloose/nerdcommenter'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-cucumber'
-Plug 'tpope/vim-endwise', { 'for': 'ruby' }
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'w0rp/ale'
-Plug 'wannesm/wmgraphviz.vim'
+
+" editor behavior
+Plug '/usr/local/opt/fzf'
+Plug 'adelarsq/vim-matchit'
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-sensible'
+
+" development
+Plug 'dense-analysis/ale'
+Plug 'janko-m/vim-test'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-fugitive'
+
+" languages
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-endwise', { 'for': 'ruby' }
+Plug 'tpope/vim-rails'
 call plug#end()
-
-let g:deoplete#enable_at_startup = 1
-
-autocmd FileType vue syntax sync fromstart
-" Set asm as kickass syntax
-autocmd BufRead *.asm set filetype=kickass
-
-" Settings for vim-jsx
-let g:jsx_ext_required = 0
-
-" Settings for vim-javascript
-let g:javascript_plugin_flow = 1
-
-" RSpec.vim mappings
-map <leader>t :TestFile<CR>
-map <leader>T :TestNearest<CR>
-map <Leader>l :TestLast<CR>
-map <Leader>a :TestSuite<CR>
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-f> :TestFile<CR>
-nmap <silent> t<C-s> :TestSuite<CR>
-nmap <silent> t<C-l> :TestLast<CR>
-nmap <silent> t<C-g> :TestVisit<CR>
 
 set autowrite
 set fileformats=unix,dos,mac
@@ -83,68 +53,20 @@ endif
 colorscheme solarized
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CUSTOM AUTOCMDS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup vimrcEx
-  " Clear all autocmds in the group
-  autocmd!
-  autocmd FileType text setlocal textwidth=78
-  " Jump to last cursor position unless it's invalid or in an event handler
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
-  autocmd! BufReadPost gitcommit
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
-  autocmd FileType gitcommit setlocal spell spelllang=en_us
-  autocmd FileType gitcommit DiffGitCached | wincmd L
-
-  "for ruby, autoindent with two spaces, always expand tabs
-  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
-  autocmd FileType python set sw=4 sts=4 et
-
-  autocmd! BufRead,BufNewFile *.sass setfiletype sass
-
-  autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
-  autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
-
-  " Indent p tags
-  "autocmd FileType html,eruby if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags .= '\|p\|li\|dt\|dd' | endif
-
-  " Don't syntax highlight markdown because it's often wrong
-  autocmd! FileType mkd setlocal syn=off
-
-  " Leave the return key alone when in command line windows, since it's used
-  " to run commands there.
-  autocmd! CmdwinEnter * :unmap <cr>
-  autocmd! CmdwinLeave * :call MapCR()
-  autocmd BufEnter * :call MapCR()
-  autocmd BufRead,BufNewFile Podfile set filetype=ruby
-augroup END
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <Left> <Nop>
+map <Right> <Nop>
+map <Up> <Nop>
+map <Down> <Nop>
 
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
-
-imap <c-l> <space>=><space>
-
-map <leader>y "*y
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-" Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
+
 " Clear the search buffer when hitting return
 function! MapCR()
   if &buftype ==# 'quickfix'
@@ -154,33 +76,6 @@ function! MapCR()
   endif
 endfunction
 call MapCR()
-nnoremap <leader><leader> <c-^>
-" Close all other windows, open a vertical split, and open this file's test
-" alternate in it.
-nnoremap <leader>s <c-w>o <c-w>v <c-w>w :call OpenTestAlternate()<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ARROW KEYS ARE UNACCEPTABLE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Left> <Nop>
-map <Right> <Nop>
-map <Up> <Nop>
-map <Down> <Nop>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MULTIPURPOSE TAB KEY
-" Indent if we're at the beginning of a line. Else, do completion.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-n>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OPEN FILES IN DIRECTORY OF CURRENT FILE
@@ -188,11 +83,6 @@ inoremap <s-tab> <c-n>
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>e :edit %%
 map <leader>v :view %%
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RENAME CURRENT FILE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>n :Rename<space>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PROMOTE VARIABLE TO RSPEC LET
@@ -207,148 +97,60 @@ endfunction
 :command! PromoteToLet :call PromoteToLet()
 :map <leader>p :PromoteToLet<cr>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SWITCH BETWEEN TEST AND PRODUCTION CODE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! OpenTestAlternate()
-  let new_file = AlternateForCurrentFile()
-  exec ':e ' . new_file
-endfunction
-
-function! AlternateForCurrentFile()
-  let current_file = expand('%')
-  let new_file = current_file
-
-  let in_spec = match(current_file, '^spec/') != -1
-  let in_test = match(current_file, '^test/') != -1
-
-  let in_controllers = match(current_file, '\<controllers\>') != -1
-  let in_models = match(current_file, '\<models\>') != -1
-  let in_views = match(current_file, '\<views\>') != -1
-  let in_workers = match(current_file, '\<workers\>') != -1
-
-  let in_app = in_controllers || in_models || in_views || in_workers
-
-  if in_spec || in_test
-    if in_spec
-      let new_file = substitute(new_file, '_spec\.rb$', '.rb', '')
-      let new_file = substitute(new_file, '^spec/', '', '')
-    elseif in_test
-      let new_file = substitute(new_file, '_test\.rb$', '.rb', '')
-      let new_file = substitute(new_file, '^test/', '', '')
-    end
-
-    if in_app
-      let new_file = 'app/' . new_file
-    end
-
-    return new_file
-  else
-    if in_app
-      let new_file = substitute(new_file, '^app/', '', '')
-    end
-
-    let spec_file = substitute(new_file, '\.rb$', '_spec.rb', '')
-    let spec_file = 'spec/' . spec_file
-
-    let test_file = substitute(new_file, '\.rb$', '_test.rb', '')
-    let test_file = 'test/' . test_file
-
-    if filereadable(test_file)
-      return test_file
-    else
-      return spec_file
-    end
-  end
-endfunction
-nnoremap <leader>. :call OpenTestAlternate()<cr>
-
 " open quickfix after any grep invocation
 augroup grepQuickFixGroup
   autocmd QuickFixCmdPost *grep* cwindow
 augroup END
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Selecta Mappings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Run a given vim command on the results of fuzzy selecting from a given shell
-" command. See usage below.
-function! SelectaCommand(choice_command, selecta_args, vim_command)
-  try
-    let selection = system(a:choice_command . " | selecta " . a:selecta_args)
-    " Escape spaces in the file name. That ensures that it's a single argument
-    " when concatenated with vim_command and run with exec.
-    let selection = substitute(selection, ' ', '\\ ', "g")
-  catch /Vim:Interrupt/
-    " Swallow the ^C so that the redraw below happens; otherwise there will be
-    " leftovers from selecta on the screen
-    redraw!
-    return
-  endtry
-  redraw!
-  exec a:vim_command . " " . selection
-endfunction
-
-function! SelectaFile(path, glob)
-  call SelectaCommand("find " . a:path . "/* -type f -and -iname '" . a:glob . "' -and -not -iname '*.pyc'", "", ":e")
-endfunction
-
-nnoremap <leader>f :call SelectaFile(".", "*")<cr>
-nnoremap <leader>gv :call SelectaFile("app/views", "*")<cr>
-nnoremap <leader>gc :call SelectaFile("app/controllers", "*")<cr>
-nnoremap <leader>gm :call SelectaFile("app/models", "*")<cr>
-nnoremap <leader>gh :call SelectaFile("app/helpers", "*")<cr>
-nnoremap <leader>gl :call SelectaFile("lib", "*")<cr>
-nnoremap <leader>gp :call SelectaFile("public", "*")<cr>
-nnoremap <leader>gs :call SelectaFile("public/stylesheets", "*.sass")<cr>
-nnoremap <leader>gf :call SelectaFile("features", "*")<cr>
-
-"Fuzzy select
-function! SelectaIdentifier()
-  " Yank the word under the cursor into the z register
-  normal "zyiw
-  " Fuzzy match files in the current directory, starting with the word under
-  " the cursor
-  call SelectaCommand("find * -type f", "-s " . @z, ":e")
-endfunction
-nnoremap <c-g> :call SelectaIdentifier()<cr>
-
-nnoremap <leader>k :!make<cr>
-
 let g:airline#extensions#ale#enabled = 1
 
-nnoremap <Leader>ht :GhcModType<cr>
-nnoremap <Leader>htc :GhcModTypeClear<cr>
-autocmd FileType haskell nnoremap <buffer> <leader>? :call ale#cursor#ShowCursorDetail()<cr>
+" Fzf 
+nnoremap <leader>ff :GFiles<CR>
+nnoremap <Leader>fb :Buffers<CR>
+nnoremap <Leader>fh :History<CR>
+nnoremap <Leader>fc :Commits<CR>
+nnoremap <Leader>ft :Tags<CR>
 
-let g:ale_fixers = {}
-let g:ale_fixers['typescript'] = ['prettier']
-let g:ale_fixers['javascript'] = ['prettier']
-let g:ale_fixers['vue'] = ['prettier']
-let g:ale_fix_on_save = 1
-nnoremap gp :silent %!prettier --stdin --trailing-comma all --single-quote<CR>
+" hide statusline when fzf buffer is open
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
-augroup AutoSwap
-        autocmd!
-        autocmd SwapExists *  call AS_HandleSwapfile(expand('<afile>:p'), v:swapname)
-augroup END
+" Development specific
 
-function! AS_HandleSwapfile (filename, swapname)
-        " if swapfile is older than file itself, just get rid of it
-        if getftime(v:swapname) < getftime(a:filename)
-                call delete(v:swapname)
-                let v:swapchoice = 'e'
-        endif
-endfunction
+" Invoke make
+nnoremap <leader>k :!make<cr>
 
-autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
-  \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
+" vim-test mappings
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>s :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
 
-augroup checktime
-    au!
-    if !has("gui_running")
-        "silent! necessary otherwise throws errors when using command
-        "line window.
-        autocmd BufEnter,CursorHold,CursorHoldI,CursorMoved,CursorMovedI,FocusGained,BufEnter,FocusLost,WinLeave * checktime
-    endif
-augroup END
+" enable coc status in airline
+let g:airline#extensions#coc#enabled = 1
+
+" gutentags
+let g:gutentags_generate_on_new = 0
+let g:gutentags_cache_dir = "~/.tags_cache"
+
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'ruby': ['rubocop'],
+\}
+
+let g:ale_linters_explicit = 1
+let g:airline#extensions#ale#enabled = 1
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" Language specific
+
+" Set asm as kickass syntax
+autocmd BufRead *.asm set filetype=kickass
+
+" javascript
+let g:jsx_ext_required = 1 " syntax highlighting only on .jsx files
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
