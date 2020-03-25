@@ -18,7 +18,7 @@ Plug 'dense-analysis/ale'
 Plug 'janko-m/vim-test'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 
 " languages
 Plug 'sheerun/vim-polyglot'
@@ -100,6 +100,42 @@ endfunction
 " open quickfix after any grep invocation
 augroup grepQuickFixGroup
   autocmd QuickFixCmdPost *grep* cwindow
+augroup END
+
+augroup vimrcEx
+  " Clear all autocmds in the group
+  autocmd!
+  autocmd FileType text setlocal textwidth=78
+  " Jump to last cursor position unless it's invalid or in an event handler
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+  autocmd! BufReadPost gitcommit
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+  autocmd FileType gitcommit setlocal spell spelllang=en_us
+  autocmd FileType gitcommit DiffGitCached | wincmd L
+
+  "for ruby, autoindent with two spaces, always expand tabs
+  autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+  autocmd FileType python set sw=4 sts=4 et
+
+  autocmd! BufRead,BufNewFile *.sass setfiletype sass
+
+  autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
+  autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
+
+  " Indent p tags
+  "autocmd FileType html,eruby if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags .= '\|p\|li\|dt\|dd' | endif
+
+  " Leave the return key alone when in command line windows, since it's used
+  " to run commands there.
+  autocmd! CmdwinEnter * :unmap <cr>
+  autocmd! CmdwinLeave * :call MapCR()
+  autocmd BufEnter * :call MapCR()
+  autocmd BufRead,BufNewFile Podfile set filetype=ruby
 augroup END
 
 let g:airline#extensions#ale#enabled = 1
